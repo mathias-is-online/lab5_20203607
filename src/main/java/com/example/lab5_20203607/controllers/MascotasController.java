@@ -67,8 +67,8 @@ public class MascotasController {
     }
 
     @PostMapping("/saveeditar")
-    public String gaurdarmascota(Mascotas mascotas) {
-        mascotasRepository.saveeditar(mascotas);
+    public String guardarespecial(Mascotas mascotas) {
+        mascotasRepository.saveeditar(mascotas.getIdMascotas(),mascotas.getNombre_mascota(),mascotas.getVacunado(),mascotas.getDesparasitado());
         return "redirect:/mascotas";
     }
 
