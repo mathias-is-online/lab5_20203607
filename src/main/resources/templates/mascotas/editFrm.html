@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Editar Viaje</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/viajes}">Viajes  </a>
+                </li>
+                <div>       </div>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/mascotas}">Mascotas    </a>
+                </li>
+                <div>      </div>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/lugares}">Lugares   </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 mb-3 border-bottom">Editar Mascota</h1>
+        <form method="post" th:action="@{/mascotas/save}" th:object="${mascotas}" class="mt-2">
+            <input th:field="*{idMascotas}" name="idViajes" type="hidden"/>
+            <div class="mb-3">
+                <label class="form-label">nombre_mascota</label>
+                <input th:field="*{nombre_mascota}" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">genero</label>
+                <input th:field="*{genero}" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">edad</label>
+                <input th:field="*{edad}" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">fecha nacimiento</label>
+                <input th:field="*{fecha_nacimiento}" type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="Vacunado" class="form-label">Seleccione vacunado</label>
+                <select class="form-select" name="Vacunado" id="Vacunado">
+                    <option th:each="opt: ${opciones}"
+                            th:selected="${opt == mascotas.vacunado}"
+                            th:text="${opt}" th:value="${opt}">Open this select menu</option>
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="Desparasitado" class="form-label">Seleccione desparasitacion</label>
+                <select class="form-select" name="Desparasitado" id="Desparasitado">
+                    <option th:each="opt: ${opciones}"
+                            th:selected="${opt == mascotas.desparasitado}"
+                            th:text="${opt}" th:value="${opt}">Open this select menu</option>
+                </select>
+            </div>
+
+
+
+
+
+            <a th:href="@{/mascotas}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

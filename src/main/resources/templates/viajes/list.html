@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Lista Viajes</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/viajes}">Viajes  </a>
+                </li>
+                <div>       </div>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/mascotas}">Mascotas    </a>
+                </li>
+                <div>      </div>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/lugares}">Lugares   </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom">Lista Viajes</h1>
+
+        <a class="btn btn-primary mb-4" th:href="@{'/viajes/new'}">Nuevo Viaje</a>
+        <table class="table">
+            <tr>
+                <th># de viaje</th>
+                <th>Punto de Recojo</th>
+                <th>Cant. personas</th>
+                <th>Cant. perros</th>
+                <th>Persona</th>
+                <th>Lugar</th>
+
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each="viaje, info : ${lista}">
+                <td th:text="${info.index + 1}"></td>
+                <td th:text="${viaje.punto_recojo}"></td>
+                <td th:text="${viaje.cant_personas}"></td>
+                <td th:text="${viaje.cant_perros}"></td>
+                <td th:text="${viaje.persona.nombre}"></td>
+                <td th:text="${viaje.lugares.nombre_lugar}"></td>
+                <td><a class="btn btn-primary"
+                       th:href="@{'/viajes/edit?id=' + ${viaje.idViajes}}">Editar</a>
+                </td>
+                <td><a class="btn btn-danger"
+                       th:href="@{'/viajes/delete?id=' + ${viaje.idViajes}}">Borrar</a>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+
+
+
+</body>
+</html>
